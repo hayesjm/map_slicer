@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 import 'map_slicer_home.dart';
 
 class MapSlicerApp extends StatelessWidget {
@@ -9,7 +10,7 @@ class MapSlicerApp extends StatelessWidget {
     return MaterialApp(
       title: 'TSTS Map Slicer',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: AppTheme.dark(),
       home: const MapSlicerHome(),
     );
   }

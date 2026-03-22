@@ -1,30 +1,138 @@
 import 'package:flutter/material.dart';
+import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';
 
-class ImageControlsPanel extends StatelessWidget {
+class ImageControlsPanel extends StatefulWidget {
   const ImageControlsPanel({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const TitledPanel(
-      title: 'Image Controls',
-      child: _PanelBlock(label: 'Image controls placeholder'),
-    );
-  }
+  State<ImageControlsPanel> createState() => _ImageControlsPanelState();
 }
 
-class _PanelBlock extends StatelessWidget {
-  final String label;
-
-  const _PanelBlock({required this.label});
+class _ImageControlsPanelState extends State<ImageControlsPanel> {
+  double _zoom = 100;
+  double _offsetX = 0;
+  double _offsetY = 0;
+  double _brightness = 100;
+  double _contrast = 100;
+  double _saturation = 100;
+  double _gamma = 1.00;
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Text(
-        label,
-        style: const TextStyle(color: Colors.white70),
+    return TitledPanel(
+      title: 'Image Controls',
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SliderNumberRow(
+            label: 'Zoom',
+            value: _zoom,
+            min: 25,
+            max: 300,
+            defaultValue: 100,
+            divisions: 275,
+            decimals: 0,
+            units: '%',
+            onChanged: (value) {
+              setState(() {
+                _zoom = value;
+              });
+            },
+          ),
+          SliderNumberRow(
+            label: 'Off X',
+            value: _offsetX,
+            min: -100,
+            max: 100,
+            defaultValue: 0,
+            divisions: 200,
+            decimals: 0,
+            units: '%',
+            onChanged: (value) {
+              setState(() {
+                _offsetX = value;
+              });
+            },
+          ),
+          SliderNumberRow(
+            label: 'Off Y',
+            value: _offsetY,
+            min: -100,
+            max: 100,
+            defaultValue: 0,
+            divisions: 200,
+            decimals: 0,
+            units: '%',
+            onChanged: (value) {
+              setState(() {
+                _offsetY = value;
+              });
+            },
+          ),
+          SliderNumberRow(
+            label: 'Bright',
+            value: _brightness,
+            min: 0,
+            max: 200,
+            defaultValue: 100,
+            divisions: 200,
+            decimals: 0,
+            units: '%',
+            onChanged: (value) {
+              setState(() {
+                _brightness = value;
+              });
+            },
+          ),
+          SliderNumberRow(
+            label: 'Contrast',
+            value: _contrast,
+            min: 0,
+            max: 200,
+            defaultValue: 100,
+            divisions: 200,
+            decimals: 0,
+            units: '%',
+            onChanged: (value) {
+              setState(() {
+                _contrast = value;
+              });
+            },
+          ),
+          SliderNumberRow(
+            label: 'Sat',
+            value: _saturation,
+            min: 0,
+            max: 200,
+            defaultValue: 100,
+            divisions: 200,
+            decimals: 0,
+            units: '%',
+            onChanged: (value) {
+              setState(() {
+                _saturation = value;
+              });
+            },
+          ),
+          SliderNumberRow(
+            label: 'Gamma',
+            value: _gamma,
+            min: 0.25,
+            max: 3.00,
+            defaultValue: 1.00,
+            divisions: 275,
+            decimals: 2,
+            units: ' ',
+            onChanged: (value) {
+              setState(() {
+                _gamma = value;
+              });
+            },
+          ),
+        ],
       ),
     );
   }

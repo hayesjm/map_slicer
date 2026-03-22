@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_metrics.dart';
 import 'left_control_column.dart';
 import 'right_workspace.dart';
 
@@ -8,16 +10,16 @@ class WorkspaceShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF141414),
-      padding: const EdgeInsets.all(12),
+      color: AppColors.workspaceBg,
+      padding: const EdgeInsets.all(AppMetrics.workspaceGap),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: const [
           SizedBox(
-            width: 320,
+            width: AppMetrics.leftColumnWidth,
             child: LeftControlColumn(),
           ),
-          SizedBox(width: 12),
+          SizedBox(width: AppMetrics.workspaceGap),
           Expanded(
             child: RightWorkspace(),
           ),
