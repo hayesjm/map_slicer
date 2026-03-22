@@ -8,7 +8,7 @@ class SliderNumberRow extends StatefulWidget {
   final double min;
   final double max;
   final double defaultValue;
-  final ValueChanged<double> onChanged;
+  final ValueChanged<double>? onChanged;
   final String? units;
   final int? divisions;
   final int decimals;
@@ -82,7 +82,7 @@ class _SliderNumberRowState extends State<SliderNumberRow> {
 
   void _setValue(double nextValue) {
     final clamped = _clamp(nextValue);
-    widget.onChanged(clamped);
+    widget.onChanged?.call(clamped);
 
     if (!_focusNode.hasFocus) {
       _controller.text = _formatValue(clamped);
@@ -98,13 +98,13 @@ class _SliderNumberRowState extends State<SliderNumberRow> {
     }
 
     final clamped = _clamp(parsed);
-    widget.onChanged(clamped);
+    widget.onChanged?.call(clamped);
     _controller.text = _formatValue(clamped);
   }
 
   void _resetToDefault() {
     final resetValue = _clamp(widget.defaultValue);
-    widget.onChanged(resetValue);
+    widget.onChanged?.call(resetValue);
     _controller.text = _formatValue(resetValue);
   }
 

@@ -43,7 +43,7 @@ class ModeButtonRow<T> extends StatelessWidget {
               final bool selected = option.value == value;
 
               return Padding(
-                padding: const EdgeInsets.only(left: 4),
+                padding: const EdgeInsets.only(left: 3),
                 child: OutlinedButton(
                   onPressed: () => onChanged(option.value),
                   style: OutlinedButton.styleFrom(
@@ -51,12 +51,12 @@ class ModeButtonRow<T> extends StatelessWidget {
                       horizontal: 0,
                       vertical: 0,
                     ),
-                    minimumSize: const Size(36,36),
+                    minimumSize: const Size(39,39),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-
+                    backgroundColor: selected ? AppColors.resetDirtyFill : AppColors.resetIdleFill,
                     foregroundColor: selected
                         ? AppColors.sliderActive
                         : AppColors.controlValue,

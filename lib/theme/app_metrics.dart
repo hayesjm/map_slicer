@@ -24,7 +24,7 @@ class AppMetrics {
   // ====================================
   // SliderNumberRow control (slider_number_row.dart)
   // ====================================
-  static const controlGap = 5.0;
+  static const controlGap = 10.0;
   static const labelButtonRadius = 4.0;
   static const controlFontSize = 13.0;
   static const numberFieldVerticalPadding = 5.0;
