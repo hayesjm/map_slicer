@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const double themeHue = 180.0;
+  static const double themeHue = 185.0;
 
   static Color hsl(double saturation, double lightness) {
     return HSLColor.fromAHSL(1.0, themeHue, saturation, lightness).toColor();
@@ -12,12 +12,12 @@ class AppColors {
   }
 
   // Workspace
-  static final workspaceBg = hsl(0.08, 0.10);
+  static final workspaceBg = hsl(0.04, 0.18);
 
   // Panels
-  static final panelHeaderBg = hsl(0.15, 0.15);
-  static final panelHeaderFontColor = hsl(0.15, 0.60);
-  static final panelBorder = hsla(0.10, 0.10, 0.08);
+  static final panelHeaderBg = hsl(0.10, 0.15);
+  static final panelHeaderFontColor = hsl(0.12, 0.60);
+  static final panelBorder = hsl(0.04, 0.05);
   static final panelBg = hsl(0.05, 0.25);
 
   // Control text

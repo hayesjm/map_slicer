@@ -125,7 +125,7 @@ class _SliderNumberRowState extends State<SliderNumberRow> {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: AppMetrics.controlRowVerticalPadding,
-        horizontal: AppMetrics.panelBodyPadding,
+        horizontal: 0,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

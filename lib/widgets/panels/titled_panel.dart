@@ -5,23 +5,25 @@ import '../../theme/app_metrics.dart';
 class TitledPanel extends StatelessWidget {
   final String title;
   final Widget child;
-  final EdgeInsetsGeometry padding;
   final bool expandBody;
+  final bool useBodyPadding;
 
   const TitledPanel({
     super.key,
     required this.title,
     required this.child,
-    this.padding = const EdgeInsets.all(AppMetrics.panelBodyPadding),
     this.expandBody = false,
+    this.useBodyPadding = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    final body = Padding(
-      padding: EdgeInsets.zero,
-      child: child,
-    );
+    final Widget panelBody = useBodyPadding
+        ? Padding(
+            padding: const EdgeInsets.all(AppMetrics.panelBodyPadding),
+            child: child,
+          )
+        : child;
 
     return Container(
       decoration: BoxDecoration(
@@ -52,15 +54,14 @@ class TitledPanel extends StatelessWidget {
             ),
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: AppMetrics.panelHeaderFontSize,
                 fontWeight: FontWeight.w700,
-                color: AppColors.panelHeaderFontColor,
                 letterSpacing: AppMetrics.panelHeaderLetterSpacing,
               ),
             ),
           ),
-          if (expandBody) Expanded(child: body) else body,
+          if (expandBody) Expanded(child: panelBody) else panelBody,
         ],
       ),
     );

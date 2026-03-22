@@ -35,8 +35,9 @@ class AppMetrics {
   static const unitsWidth = 12.0;
   static const unitsGap = 5.0;
 
+  static const infoRowVerticalPadding = 0.0;
   // ====================================
   // Bottom information panel (right_workspace.dart)
   // ====================================
-  static const infoRowHeight = 170.0;
+  static const infoRowHeight = 270.0;
 }

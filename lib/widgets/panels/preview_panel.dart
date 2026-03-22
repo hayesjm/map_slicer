@@ -8,7 +8,7 @@ class PreviewPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return const TitledPanel(
       title: 'Preview',
-      padding: EdgeInsets.all(12),
+      useBodyPadding: false,
       expandBody: true,
       child: _PreviewPlaceholder(),
     );

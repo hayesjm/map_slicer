@@ -22,7 +22,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
   Widget build(BuildContext context) {
     return TitledPanel(
       title: 'Image Controls',
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+      useBodyPadding: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
