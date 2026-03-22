@@ -2,6 +2,58 @@ import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_metrics.dart';
 
+class RectSliderThumbShape extends SliderComponentShape {
+  final double width;
+  final double height;
+  final double radius;
+
+  const RectSliderThumbShape({
+    required this.width,
+    required this.height,
+    this.radius = 3,
+  });
+
+  @override
+  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
+    return Size(width, height);
+  }
+
+  @override
+  void paint(
+    PaintingContext context,
+    Offset center, {
+    required Animation<double> activationAnimation,
+    required Animation<double> enableAnimation,
+    required bool isDiscrete,
+    required TextPainter labelPainter,
+    required RenderBox parentBox,
+    required SliderThemeData sliderTheme,
+    required TextDirection textDirection,
+    required double value,
+    required double textScaleFactor,
+    required Size sizeWithOverflow,
+  }) {
+    final Canvas canvas = context.canvas;
+
+    final paint = Paint()
+      ..color =
+          sliderTheme.thumbColor ?? sliderTheme.activeTrackColor ?? Colors.white
+      ..style = PaintingStyle.fill;
+    final borderPaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 0.5;
+
+    final rect = RRect.fromRectAndRadius(
+      Rect.fromCenter(center: center, width: width, height: height),
+      Radius.circular(radius),
+    );
+
+    canvas.drawRRect(rect, paint);
+    canvas.drawRRect(rect, borderPaint);
+  }
+}
+
 class SliderNumberRow extends StatefulWidget {
   final String label;
   final double value;
@@ -173,6 +225,16 @@ class _SliderNumberRowState extends State<SliderNumberRow> {
               data: SliderTheme.of(context).copyWith(
                 activeTrackColor: AppColors.sliderActive,
                 inactiveTrackColor: AppColors.sliderInactive,
+
+                trackHeight: 3,
+
+                thumbShape: const RectSliderThumbShape(
+                  width: 6,
+                  height: 18,
+                  radius: 2,
+                ),
+
+                overlayShape: SliderComponentShape.noOverlay,
               ),
               child: Slider(
                 value: _clamp(widget.value),
