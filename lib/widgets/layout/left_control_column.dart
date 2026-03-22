@@ -12,7 +12,7 @@ class LeftControlColumn extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
+        children: [
           ImageControlsPanel(),
           SizedBox(height: 12),
           GridControlsPanel(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../controls/labeled_switch_row.dart';
 import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';
 
@@ -17,12 +18,12 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
   double _contrast = 100;
   double _saturation = 100;
   double _gamma = 1.00;
+  bool _maintainAspectRatio = true;
 
   @override
   Widget build(BuildContext context) {
     return TitledPanel(
       title: 'Image Controls',
-      useBodyPadding: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -129,6 +130,15 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
             onChanged: (value) {
               setState(() {
                 _gamma = value;
+              });
+            },
+          ),
+          LabeledSwitchRow(
+            label: 'Maintain AR',
+            value: _maintainAspectRatio,
+            onChanged: (value) {
+              setState(() {
+                _maintainAspectRatio = value;
               });
             },
           ),
