@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
+import '../controls/mode_button_row.dart';
 import 'titled_panel.dart';
+import '../icons/grid_mode_icons.dart';
 
-class GridControlsPanel extends StatelessWidget {
+class GridControlsPanel extends StatefulWidget {
   const GridControlsPanel({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const TitledPanel(
-      title: 'Grid Controls',
-      child: _PanelBlock(label: 'Grid controls placeholder'),
-    );
-  }
+  State<GridControlsPanel> createState() => _GridControlsPanelState();
 }
 
-class _PanelBlock extends StatelessWidget {
-  final String label;
-
-  const _PanelBlock({required this.label});
+class _GridControlsPanelState extends State<GridControlsPanel> {
+  String _gridMode = 'none';
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Text(
-        label,
-        style: const TextStyle(color: Colors.white70),
+    return TitledPanel(
+      title: 'Grid Controls',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ModeButtonRow<String>(
+            label: 'Grid Mode',
+            value: _gridMode,
+            options: const [
+              ModeOption(value: 'none', iconWidget: GridModeNoneIcon()),
+              ModeOption(value: 'square', iconWidget: GridModeSquareIcon()),
+              ModeOption(value: 'iso', iconWidget: GridModeIsoIcon()),
+            ],
+            onChanged: (mode) {
+              setState(() {
+                _gridMode = mode;
+              });
+            },
+          ),
+        ],
       ),
     );
   }

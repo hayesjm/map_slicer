@@ -28,17 +28,15 @@ class ModeButtonRow<T> extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppMetrics.controlFontSize,
-                color: AppColors.controlLabel,
+                color: AppColors.controlValue,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
           ),
-
           const SizedBox(width: AppMetrics.controlGap),
-
           Row(
             mainAxisSize: MainAxisSize.min,
             children: options.map((option) {
@@ -50,9 +48,15 @@ class ModeButtonRow<T> extends StatelessWidget {
                   onPressed: () => onChanged(option.value),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
+                      horizontal: 0,
+                      vertical: 0,
                     ),
+                    minimumSize: const Size(36,36),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+
                     foregroundColor: selected
                         ? AppColors.sliderActive
                         : AppColors.controlValue,
@@ -62,9 +66,15 @@ class ModeButtonRow<T> extends StatelessWidget {
                           : AppColors.panelBorder,
                     ),
                   ),
-                  child: option.icon != null
-                      ? Icon(option.icon, size: 16)
-                      : Text(option.label ?? ''),
+
+                  child: option.iconWidget != null
+                      ? option.iconWidget!
+                      : Text(
+                          option.label ?? '',
+                          style: TextStyle(
+                            fontSize: AppMetrics.controlFontSize,
+                          ),
+                        ),
                 ),
               );
             }).toList(),
@@ -78,11 +88,7 @@ class ModeButtonRow<T> extends StatelessWidget {
 class ModeOption<T> {
   final T value;
   final String? label;
-  final IconData? icon;
+  final Widget? iconWidget;
 
-  const ModeOption({
-    required this.value,
-    this.label,
-    this.icon,
-  });
+  const ModeOption({required this.value, this.label, this.iconWidget});
 }
