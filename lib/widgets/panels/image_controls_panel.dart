@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controls/action_button_row.dart';
+import '../controls/file_load_row.dart';
 import '../controls/info_value_row.dart';
 import '../controls/labeled_switch_row.dart';
 import '../controls/slider_number_row.dart';
@@ -41,69 +41,121 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ActionButtonRow(
-            label: 'Image',
-            buttonText: 'Load Image',
+          FileLoadRow(
+            buttonText: 'Load',
+            fileName: _imageName,
             onPressed: _handleLoadImage,
           ),
-
-          InfoValueRow(
-            label: 'File',
-            value: _imageName,
-          ),
-
-          InfoValueRow(
-            label: 'Source',
-            value: _sourceSize,
+          SliderNumberRow(
+            label: 'Zoom',
+            value: _zoom,
+            min: 25,
+            max: 300,
+            defaultValue: 100,
+            divisions: 275,
+            decimals: 0,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _zoom = value;
+              });
+            },
           ),
 
           SliderNumberRow(
-            label: 'Zoom', value: _zoom,
-            min: 25, max: 300, defaultValue: 100,
-            divisions: 275, decimals: 0, units: '',
-            onChanged: (value) { setState(() { _zoom = value; }); },
+            label: 'Offset X',
+            value: _offsetX,
+            min: -100,
+            max: 100,
+            defaultValue: 0,
+            divisions: 200,
+            decimals: 0,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _offsetX = value;
+              });
+            },
           ),
 
           SliderNumberRow(
-            label: 'Offset X', value: _offsetX,
-            min: -100, max: 100, defaultValue: 0,
-            divisions: 200, decimals: 0, units: '',
-            onChanged: (value) { setState(() { _offsetX = value; }); },
+            label: 'Offset Y',
+            value: _offsetY,
+            min: -100,
+            max: 100,
+            defaultValue: 0,
+            divisions: 200,
+            decimals: 0,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _offsetY = value;
+              });
+            },
           ),
 
           SliderNumberRow(
-            label: 'Offset Y', value: _offsetY,
-            min: -100, max: 100, defaultValue: 0,
-            divisions: 200, decimals: 0, units: '',
-            onChanged: (value) { setState(() { _offsetY = value; }); },
+            label: 'Bright',
+            value: _brightness,
+            min: 0,
+            max: 200,
+            defaultValue: 100,
+            divisions: 200,
+            decimals: 0,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _brightness = value;
+              });
+            },
           ),
 
           SliderNumberRow(
-            label: 'Bright', value: _brightness,
-            min: 0, max: 200, defaultValue: 100,
-            divisions: 200, decimals: 0, units: '',
-            onChanged: (value) { setState(() { _brightness = value; }); },
+            label: 'Contrast',
+            value: _contrast,
+            min: 0,
+            max: 200,
+            defaultValue: 100,
+            divisions: 200,
+            decimals: 0,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _contrast = value;
+              });
+            },
           ),
 
           SliderNumberRow(
-            label: 'Contrast', value: _contrast,
-            min: 0, max: 200, defaultValue: 100,
-            divisions: 200, decimals: 0, units: '',
-            onChanged: (value) { setState(() { _contrast = value; }); },
+            label: 'Sat',
+            value: _saturation,
+            min: 0,
+            max: 200,
+            defaultValue: 100,
+            divisions: 200,
+            decimals: 0,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _saturation = value;
+              });
+            },
           ),
 
           SliderNumberRow(
-            label: 'Sat', value: _saturation,
-            min: 0, max: 200, defaultValue: 100,
-            divisions: 200, decimals: 0, units: '',
-            onChanged: (value) { setState(() { _saturation = value; }); },
-          ),
-
-          SliderNumberRow(
-            label: 'Gamma', value: _gamma,
-            min: 0.25, max: 3.00, defaultValue: 1.00,
-            divisions: 275, decimals: 2, units: '',
-            onChanged: (value) { setState(() { _gamma = value; }); },
+            label: 'Gamma',
+            value: _gamma,
+            min: 0.25,
+            max: 3.00,
+            defaultValue: 1.00,
+            divisions: 275,
+            decimals: 2,
+            units: '',
+            onChanged: (value) {
+              setState(() {
+                _gamma = value;
+              });
+            },
           ),
 
           LabeledSwitchRow(
