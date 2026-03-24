@@ -13,7 +13,8 @@ class AppColors {
 
   // Workspace
   static final workspaceBg = hsl(0.02, 0.20);
-
+  static final black = hsl(0,0);
+  static final white = hsl(0,1);
   // Panels
   static final panelHeaderBg = hsl(0.10, 0.15);
   static final panelHeaderFontColor = hsl(0.12, 0.60);
