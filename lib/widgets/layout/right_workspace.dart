@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
+import '../../services/image_loader.dart';
+import '../../theme/app_metrics.dart';
 import '../panels/info_row.dart';
 import '../panels/preview_panel.dart';
-import '../../theme/app_metrics.dart';
 
 class RightWorkspace extends StatelessWidget {
-  const RightWorkspace({super.key});
+  final LoadedImageFile? loadedImage;
 
-  static const double infoRowHeight = AppMetrics.infoRowHeight;
+  const RightWorkspace({
+    super.key,
+    required this.loadedImage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: PreviewPanel(),
+          child: PreviewPanel(
+            loadedImage: loadedImage,
+          ),
         ),
-        SizedBox(height: 12),
-        SizedBox(
-          height: infoRowHeight,
+        const SizedBox(height: AppMetrics.workspaceGap),
+        const SizedBox(
+          height: AppMetrics.infoRowHeight,
           child: InfoRow(),
         ),
       ],

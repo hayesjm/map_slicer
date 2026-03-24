@@ -1,42 +1,46 @@
 import 'package:flutter/material.dart';
+import '../../services/image_loader.dart';
 import 'titled_panel.dart';
 
 class PreviewPanel extends StatelessWidget {
-  const PreviewPanel({super.key});
+  final LoadedImageFile? loadedImage;
+
+  const PreviewPanel({
+    super.key,
+    required this.loadedImage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const TitledPanel(
+    return TitledPanel(
       title: 'Preview',
-      useBodyPadding: false,
       expandBody: true,
-      child: _PreviewPlaceholder(),
-    );
-  }
-}
-
-class _PreviewPlaceholder extends StatelessWidget {
-  const _PreviewPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: const Color(0xFF111111),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.white24,
-        ),
-      ),
-      child: const Center(
-        child: Text(
-          'Preview Area\n(No image loaded)',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white54,
-            fontSize: 16,
+      useBodyPadding: true,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: const Color(0xFF111111),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: Colors.white24,
           ),
         ),
+        child: loadedImage == null
+            ? const Center(
+                child: Text(
+                  'Preview Area\n(No image loaded)',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white54,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            : Center(
+                child: Image.memory(
+                  loadedImage!.bytes,
+                  fit: BoxFit.contain,
+                ),
+              ),
       ),
     );
   }
