@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../services/image_loader.dart';
 import 'titled_panel.dart';
+import '../../model/slicer_project.dart';
 
 class PreviewPanel extends StatelessWidget {
   final LoadedImageFile? loadedImage;
+  final SlicerProject project;
 
   const PreviewPanel({
     super.key,
     required this.loadedImage,
+    required this.project,
   });
 
   @override

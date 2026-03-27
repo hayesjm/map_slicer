@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'titled_panel.dart';
+import '../../model/slicer_project.dart';
 
 class OutputControlsPanel extends StatelessWidget {
-  const OutputControlsPanel({super.key});
+  const OutputControlsPanel({super.key, required this.project});
+  final SlicerProject project;
 
   @override
   Widget build(BuildContext context) {

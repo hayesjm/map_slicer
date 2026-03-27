@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import '../controls/mode_button_row.dart';
 import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';
+import '../../model/slicer_project.dart';
 
 class GridControlsPanel extends StatefulWidget {
-  const GridControlsPanel({super.key});
+  final SlicerProject project;
+  const GridControlsPanel({
+    super.key,
+    required this.project,
+  });
 
   @override
   State<GridControlsPanel> createState() => _GridControlsPanelState();

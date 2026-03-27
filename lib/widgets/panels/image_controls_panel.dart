@@ -5,15 +5,18 @@ import '../controls/info_value_row.dart';
 import '../controls/labeled_switch_row.dart';
 import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';
+import '../../model/slicer_project.dart';
 
 class ImageControlsPanel extends StatefulWidget {
   final LoadedImageFile? loadedImage;
   final ValueChanged<LoadedImageFile?> onImageLoaded;
+  final SlicerProject project;
 
   const ImageControlsPanel({
     super.key,
     required this.loadedImage,
     required this.onImageLoaded,
+    required this.project,
   });
 
   @override
@@ -29,6 +32,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
   double _saturation = 100;
   double _gamma = 1.00;
   bool _maintainAspectRatio = true;
+  
 
   Future<void> _handleLoadImage() async {
     final loaded = await ImageLoaderService.pickImage();
