@@ -152,7 +152,7 @@ class _GridControlsPanelState extends State<GridControlsPanel> {
             defaultValue: 0,
             divisions: _gridMode == 'iso' ? 300 : 1,
             decimals: 1,
-            units: '°',
+            units: '',
             onChanged: _gridMode == 'iso'
                 ? (value) {
                     setState(() {
@@ -169,7 +169,7 @@ class _GridControlsPanelState extends State<GridControlsPanel> {
             defaultValue: 0,
             divisions: 360,
             decimals: 0,
-            units: '°',
+            units: '',
             onChanged: (value) {
               setState(() {
                 _rotation = value;
@@ -185,7 +185,7 @@ class _GridControlsPanelState extends State<GridControlsPanel> {
             defaultValue: 1.00,
             divisions: 275,
             decimals: 2,
-            units: '"',
+            units: '',
             onChanged: (value) {
               setState(() {
                 _gridSize = value;
@@ -201,7 +201,7 @@ class _GridControlsPanelState extends State<GridControlsPanel> {
             defaultValue: 1.0,
             divisions: 9,
             decimals: 1,
-            units: 'p',
+            units: '',
             onChanged: (value) {
               setState(() {
                 _stroke = value;
@@ -217,7 +217,7 @@ class _GridControlsPanelState extends State<GridControlsPanel> {
             defaultValue: 0,
             divisions: 200,
             decimals: 1,
-            units: '%',
+            units: '',
             onChanged: (value) {
               setState(() {
                 _offsetX = value;
@@ -233,7 +233,7 @@ class _GridControlsPanelState extends State<GridControlsPanel> {
             defaultValue: 0,
             divisions: 200,
             decimals: 1,
-            units: '%',
+            units: '',
             onChanged: (value) {
               setState(() {
                 _offsetY = value;

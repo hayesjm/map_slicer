@@ -63,42 +63,42 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
           SliderNumberRow(
             label: 'Zoom', value: _zoom,
             min: 25, max: 300, defaultValue: 100,
-            divisions: 275, decimals: 0, units: '%',
+            divisions: 275, decimals: 0, units: '',
             onChanged: (value) { setState(() { _zoom = value; }); },
           ),
 
           SliderNumberRow(
             label: 'Offset X', value: _offsetX,
             min: -100, max: 100, defaultValue: 0,
-            divisions: 200, decimals: 0, units: '%',
+            divisions: 200, decimals: 0, units: '',
             onChanged: (value) { setState(() { _offsetX = value; }); },
           ),
 
           SliderNumberRow(
             label: 'Offset Y', value: _offsetY,
             min: -100, max: 100, defaultValue: 0,
-            divisions: 200, decimals: 0, units: '%',
+            divisions: 200, decimals: 0, units: '',
             onChanged: (value) { setState(() { _offsetY = value; }); },
           ),
 
           SliderNumberRow(
             label: 'Bright', value: _brightness,
             min: 0, max: 200, defaultValue: 100,
-            divisions: 200, decimals: 0, units: '%',
+            divisions: 200, decimals: 0, units: '',
             onChanged: (value) { setState(() { _brightness = value; }); },
           ),
 
           SliderNumberRow(
             label: 'Contrast', value: _contrast,
             min: 0, max: 200, defaultValue: 100,
-            divisions: 200, decimals: 0, units: '%',
+            divisions: 200, decimals: 0, units: '',
             onChanged: (value) { setState(() { _contrast = value; }); },
           ),
 
           SliderNumberRow(
             label: 'Sat', value: _saturation,
             min: 0, max: 200, defaultValue: 100,
-            divisions: 200, decimals: 0, units: '%',
+            divisions: 200, decimals: 0, units: '',
             onChanged: (value) { setState(() { _saturation = value; }); },
           ),
 
