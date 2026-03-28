@@ -1,40 +1,46 @@
 import 'package:flutter/material.dart';
-import '../../controllers/slicer_controller.dart';
-import 'image_info_panel.dart';
-import 'map_info_panel.dart';
-import 'pdf_info_panel.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_metrics.dart';
 
-class InfoRow extends StatelessWidget {
-  final SlicerController controller;
+class InfoValueRow extends StatelessWidget {
+  final String label;
+  final String value;
 
-  const InfoRow({
-    super.key,
-    required this.controller,
-  });
+  const InfoValueRow({super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          child: ImageInfoPanel(
-            controller: controller,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppMetrics.infoRowVerticalPadding,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: AppMetrics.controlFontSize,
+                color: AppColors.controlValue,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: MapInfoPanel(
-            controller: controller,
+          //const SizedBox(width: AppMetrics.controlGap),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: AppMetrics.controlFontSize,
+              color: AppColors.controlValue,
+            ),
+            textAlign: TextAlign.right,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: PdfInfoPanel(
-            controller: controller,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

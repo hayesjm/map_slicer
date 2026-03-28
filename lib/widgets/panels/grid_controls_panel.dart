@@ -1,6 +1,5 @@
 import '../../controllers/slicer_controller.dart';
 import 'package:flutter/material.dart';
-import '../../controllers/slicer_controller.dart';
 import '../controls/mode_button_row.dart';
 import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../controllers/slicer_controller.dart';
 import '../controls/file_load_row.dart';
 import '../controls/info_value_row.dart';
-import '../controls/labeled_switch_row.dart';
 import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';
 
