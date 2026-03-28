@@ -25,14 +25,6 @@ class OutputControlsPanel extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-
-              LabeledSwitchRow(
-                label: 'Stretch Image',
-                value: widget.project.stretchImage,
-                onChanged: (value) {
-                  widget.project.stretchImage = value;
-                },
-              ),
               SliderNumberRow(
                 label: 'Width',
                 value: project.printedWidthIn,
@@ -60,6 +52,21 @@ class OutputControlsPanel extends StatelessWidget {
                   project.printedHeightIn = value;
                 },
               ),
+              LabeledSwitchRow(
+                label: 'Maintain AR',
+                value: project.maintainAspectRatio,
+                onChanged: (value) {
+                  project.maintainAspectRatio = value;
+                },
+              ),
+              LabeledSwitchRow(
+                label: 'Stretch Image',
+                value: project.stretchImage,
+                onChanged: (value) {
+                  project.stretchImage = value;
+                },
+              ),
+
 
               ModeButtonRow<String>(
                 label: 'Slice Size',

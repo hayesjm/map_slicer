@@ -71,7 +71,7 @@ class PreviewPanel extends StatelessWidget {
                           )
                         : Image.memory(
                             loadedImage!.bytes,
-                            fit: BoxFit.cover,
+                            fit: project.stretchImage ? BoxFit.fill : BoxFit.cover,
                           ),
                   ),
                 );

@@ -52,10 +52,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 onPressed: _handleLoadImage,
               ),
 
-              InfoValueRow(
-                label: 'Source',
-                value: sourceSize,
-              ),
+              InfoValueRow(label: 'Source', value: sourceSize),
 
               SliderNumberRow(
                 label: 'Zoom',
@@ -152,14 +149,6 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 units: '',
                 onChanged: (value) {
                   widget.project.gamma = value;
-                },
-              ),
-
-              LabeledSwitchRow(
-                label: 'Maintain AR',
-                value: widget.project.maintainAspectRatio,
-                onChanged: (value) {
-                  widget.project.maintainAspectRatio = value;
                 },
               ),
             ],

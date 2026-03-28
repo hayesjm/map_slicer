@@ -68,7 +68,7 @@ class SlicerProject extends ChangeNotifier {
 
   double get printedWidthIn => _printedWidthIn;
   double get printedHeightIn => _printedHeightIn;
-  double get stretchImage => _stretchImage;
+  bool   get stretchImage => _stretchImage;
 
   String get sliceSize => _sliceSize;
   int get exportDpi => _exportDpi;
