@@ -38,7 +38,7 @@ class SlicerProject extends ChangeNotifier {
   double _printedWidthIn = 30.0;
   double _printedHeightIn = 20.0;
 
-  String _sliceSize = 'letter';
+  String _sliceSize = '8x10';
   int _exportDpi = 150;
 
   // ====================================
@@ -130,7 +130,7 @@ class SlicerProject extends ChangeNotifier {
     if (_gridMode != 'iso') {
       _isoAngle = 0.0;
     } else if (_isoAngle < 15.0) {
-      _isoAngle = 30.0;
+      _isoAngle = 15.0;
     }
 
     notifyListeners();

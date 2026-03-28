@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../model/slicer_project.dart';
-import '../controls/info_value_row.dart';
+import '../controls/mode_button_row.dart';
 import '../controls/slider_number_row.dart';
+import '../controls/info_value_row.dart';
 import 'titled_panel.dart';
 
 class OutputControlsPanel extends StatelessWidget {
@@ -31,7 +32,7 @@ class OutputControlsPanel extends StatelessWidget {
                 defaultValue: 30,
                 divisions: 56,
                 decimals: 1,
-                units: '"',
+                units: '',
                 onChanged: (value) {
                   project.printedWidthIn = value;
                 },
@@ -45,15 +46,28 @@ class OutputControlsPanel extends StatelessWidget {
                 defaultValue: 20,
                 divisions: 56,
                 decimals: 1,
-                units: '"',
+                units: '',
                 onChanged: (value) {
                   project.printedHeightIn = value;
                 },
               ),
 
-              InfoValueRow(
+              ModeButtonRow<String>(
                 label: 'Slice Size',
                 value: project.sliceSize,
+                options: const [
+                  ModeOption(
+                    value: '8x10',
+                    label: '8×10',
+                  ),
+                  ModeOption(
+                    value: '8x10.5',
+                    label: '8×10.5',
+                  ),
+                ],
+                onChanged: (value) {
+                  project.sliceSize = value;
+                },
               ),
 
               InfoValueRow(

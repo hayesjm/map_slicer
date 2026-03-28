@@ -41,16 +41,16 @@ class ModeButtonRow<T> extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: options.map((option) {
               final bool selected = option.value == value;
+              final bool hasIcon = option.iconWidget != null;
 
               return Padding(
                 padding: const EdgeInsets.only(left: 3),
                 child: OutlinedButton(
                   onPressed: () => onChanged(option.value),
                   style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
-                    ),
+                    padding: hasIcon
+                        ? const EdgeInsets.symmetric(horizontal: 0, vertical: 0)
+                        : const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                     minimumSize: const Size(39,39),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(
@@ -73,6 +73,7 @@ class ModeButtonRow<T> extends StatelessWidget {
                           option.label ?? '',
                           style: TextStyle(
                             fontSize: AppMetrics.controlFontSize,
+                            color: AppColors.black,
                           ),
                         ),
                 ),
