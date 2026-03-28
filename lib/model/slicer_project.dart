@@ -37,6 +37,7 @@ class SlicerProject extends ChangeNotifier {
 
   double _printedWidthIn = 30.0;
   double _printedHeightIn = 20.0;
+  bool _stretchImage = false;
 
   String _sliceSize = '8x10';
   int _exportDpi = 150;
@@ -67,6 +68,7 @@ class SlicerProject extends ChangeNotifier {
 
   double get printedWidthIn => _printedWidthIn;
   double get printedHeightIn => _printedHeightIn;
+  double get stretchImage => _stretchImage;
 
   String get sliceSize => _sliceSize;
   int get exportDpi => _exportDpi;
@@ -196,6 +198,11 @@ class SlicerProject extends ChangeNotifier {
     notifyListeners();
   }
 
+  set stretchImage(bool value) {
+    if (_stretchImage == value) return;
+    _stretchImage = value;
+    notifyListeners();
+  }
   set sliceSize(String value) {
     if (_sliceSize == value) return;
     _sliceSize = value;

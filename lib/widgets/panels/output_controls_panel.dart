@@ -3,6 +3,7 @@ import '../../model/slicer_project.dart';
 import '../controls/mode_button_row.dart';
 import '../controls/slider_number_row.dart';
 import '../controls/info_value_row.dart';
+import '../controls/labeled_switch_row.dart';
 import 'titled_panel.dart';
 
 class OutputControlsPanel extends StatelessWidget {
@@ -24,6 +25,14 @@ class OutputControlsPanel extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
+
+              LabeledSwitchRow(
+                label: 'Stretch Image',
+                value: widget.project.stretchImage,
+                onChanged: (value) {
+                  widget.project.stretchImage = value;
+                },
+              ),
               SliderNumberRow(
                 label: 'Width',
                 value: project.printedWidthIn,
