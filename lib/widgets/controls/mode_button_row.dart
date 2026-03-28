@@ -51,7 +51,7 @@ class ModeButtonRow<T> extends StatelessWidget {
                     padding: hasIcon
                         ? const EdgeInsets.symmetric(horizontal: 0, vertical: 0)
                         : const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                    minimumSize: const Size(39,39),
+                    minimumSize: hasIcon ? const Size(39,39) : const Size(0,39),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -61,6 +61,7 @@ class ModeButtonRow<T> extends StatelessWidget {
                         ? AppColors.sliderActive
                         : AppColors.controlValue,
                     side: BorderSide(
+                      width: 1,
                       color: selected
                           ? AppColors.sliderActive
                           : AppColors.panelBorder,
