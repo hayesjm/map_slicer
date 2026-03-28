@@ -65,7 +65,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 defaultValue: 100,
                 divisions: 275,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: (value) {
                   widget.project.zoom = value;
                 },
@@ -79,7 +79,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: (value) {
                   widget.project.imageOffsetX = value;
                 },
@@ -93,7 +93,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: (value) {
                   widget.project.imageOffsetY = value;
                 },
@@ -107,7 +107,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: (value) {
                   widget.project.brightness = value;
                 },
@@ -121,7 +121,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: (value) {
                   widget.project.contrast = value;
                 },
@@ -135,7 +135,7 @@ class _ImageControlsPanelState extends State<ImageControlsPanel> {
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: (value) {
                   widget.project.saturation = value;
                 },

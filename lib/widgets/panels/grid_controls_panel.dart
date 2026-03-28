@@ -133,7 +133,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: project.gridMode == 'iso' ? 300 : 1,
                 decimals: 1,
-                units: '°',
+                units: '',
                 onChanged: project.gridMode == 'iso'
                     ? (value) {
                         project.isoAngle = value;
@@ -149,7 +149,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 360,
                 decimals: 0,
-                units: '°',
+                units: '',
                 onChanged: (value) {
                   project.gridRotation = value;
                 },
@@ -163,7 +163,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 1.00,
                 divisions: 275,
                 decimals: 2,
-                units: '"',
+                units: '',
                 onChanged: (value) {
                   project.gridSizeIn = value;
                 },
@@ -177,7 +177,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 1.0,
                 divisions: 49,
                 decimals: 1,
-                units: 'p',
+                units: '',
                 onChanged: (value) {
                   project.gridStroke = value;
                 },
@@ -191,7 +191,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 2,
-                units: 'x',
+                units: '',
                 onChanged: (value) {
                   project.gridOffsetX = value;
                 },
@@ -205,7 +205,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 2,
-                units: 'y',
+                units: '',
                 onChanged: (value) {
                   project.gridOffsetY = value;
                 },
