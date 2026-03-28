@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../model/slicer_project.dart';
-import '../../services/image_loader.dart';
+import '../../controllers/slicer_controller.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_metrics.dart';
 import 'left_control_column.dart';
 import 'right_workspace.dart';
 
 class WorkspaceShell extends StatelessWidget {
-  final SlicerProject project;
-  final LoadedImageFile? loadedImage;
-  final ValueChanged<LoadedImageFile?> onImageLoaded;
+  final SlicerController controller;
 
   const WorkspaceShell({
     super.key,
-    required this.project,
-    required this.loadedImage,
-    required this.onImageLoaded,
+    required this.controller,
   });
 
   @override
@@ -29,16 +24,13 @@ class WorkspaceShell extends StatelessWidget {
           SizedBox(
             width: AppMetrics.leftColumnWidth,
             child: LeftControlColumn(
-              project: project,
-              loadedImage: loadedImage,
-              onImageLoaded: onImageLoaded,
+              controller: controller,
             ),
           ),
           const SizedBox(width: AppMetrics.workspaceGap),
           Expanded(
             child: RightWorkspace(
-              project: project,
-              loadedImage: loadedImage,
+              controller: controller,
             ),
           ),
         ],

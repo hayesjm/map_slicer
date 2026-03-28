@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import '../../model/slicer_project.dart';
+import '../../controllers/slicer_controller.dart';
+import '../controls/labeled_switch_row.dart';
 import '../controls/mode_button_row.dart';
 import '../controls/slider_number_row.dart';
 import '../controls/info_value_row.dart';
-import '../controls/labeled_switch_row.dart';
 import 'titled_panel.dart';
 
 class OutputControlsPanel extends StatelessWidget {
-  final SlicerProject project;
+  final SlicerController controller;
 
   const OutputControlsPanel({
     super.key,
-    required this.project,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: project,
+      listenable: controller,
       builder: (context, _) {
         return TitledPanel(
           title: 'Output Controls',
@@ -27,68 +27,53 @@ class OutputControlsPanel extends StatelessWidget {
             children: [
               SliderNumberRow(
                 label: 'Width',
-                value: project.printedWidthIn,
+                value: controller.project.printedWidthIn,
                 min: 8,
                 max: 36,
                 defaultValue: 30,
                 divisions: 56,
                 decimals: 1,
-                units: '',
-                onChanged: (value) {
-                  project.printedWidthIn = value;
-                },
+                units: '"',
+                onChanged: controller.setPrintedWidth,
               ),
 
               SliderNumberRow(
                 label: 'Height',
-                value: project.printedHeightIn,
+                value: controller.project.printedHeightIn,
                 min: 8,
                 max: 36,
                 defaultValue: 20,
                 divisions: 56,
                 decimals: 1,
-                units: '',
-                onChanged: (value) {
-                  project.printedHeightIn = value;
-                },
-              ),
-              LabeledSwitchRow(
-                label: 'Maintain AR',
-                value: project.maintainAspectRatio,
-                onChanged: (value) {
-                  project.maintainAspectRatio = value;
-                },
-              ),
-              LabeledSwitchRow(
-                label: 'Stretch Image',
-                value: project.stretchImage,
-                onChanged: (value) {
-                  project.stretchImage = value;
-                },
+                units: '"',
+                onChanged: controller.setPrintedHeight,
               ),
 
+              LabeledSwitchRow(
+                label: 'Maintain AR',
+                value: controller.project.maintainAspectRatio,
+                onChanged: controller.setMaintainAspectRatio,
+              ),
+
+              LabeledSwitchRow(
+                label: 'Stretch Image',
+                value: controller.project.stretchImage,
+                onChanged: controller.setStretchImage,
+              ),
 
               ModeButtonRow<String>(
                 label: 'Slice Size',
-                value: project.sliceSize,
+                value: controller.project.sliceSize,
                 options: const [
-                  ModeOption(
-                    value: '8x10',
-                    label: '8×10',
-                  ),
-                  ModeOption(
-                    value: '8x10.5',
-                    label: '8×10.5',
-                  ),
+                  ModeOption(value: '8x10', label: '8×10'),
+                  ModeOption(value: '8x10.5', label: '8×10.5'),
                 ],
-                onChanged: (value) {
-                  project.sliceSize = value;
-                },
+                onChanged: controller.setSliceSize,
               ),
 
               InfoValueRow(
                 label: 'Export DPI',
-                value: '${project.exportDpi}',
+                value: '${controller.project.exportDpi}',
               ),
             ],
           ),

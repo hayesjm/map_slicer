@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../model/slicer_project.dart';
-import '../../services/image_loader.dart';
+import '../../controllers/slicer_controller.dart';
 import '../controls/file_load_row.dart';
 import '../controls/info_value_row.dart';
 import '../controls/labeled_switch_row.dart';
@@ -8,33 +7,18 @@ import '../controls/slider_number_row.dart';
 import 'titled_panel.dart';
 
 class ImageControlsPanel extends StatelessWidget {
-  final SlicerProject project;
-  final LoadedImageFile? loadedImage;
-  final ValueChanged<LoadedImageFile?> onImageLoaded;
+  final SlicerController controller;
 
   const ImageControlsPanel({
     super.key,
-    required this.project,
-    required this.loadedImage,
-    required this.onImageLoaded,
+    required this.controller,
   });
-
-  Future<void> _handleLoadImage() async {
-    final loaded = await ImageLoaderService.pickImage();
-    if (loaded == null) return;
-    onImageLoaded(loaded);
-  }
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: project,
+      listenable: controller,
       builder: (context, _) {
-        final imageName = loadedImage?.fileName ?? 'No file selected';
-        final sourceSize = loadedImage == null
-            ? '—'
-            : '${loadedImage!.pixelWidth} × ${loadedImage!.pixelHeight}';
-
         return TitledPanel(
           title: 'Image Controls',
           child: Column(
@@ -43,108 +27,97 @@ class ImageControlsPanel extends StatelessWidget {
             children: [
               FileLoadRow(
                 buttonText: 'Load',
-                fileName: imageName,
-                onPressed: _handleLoadImage,
+                fileName: controller.imageName,
+                onPressed: controller.loadImage,
               ),
 
-              InfoValueRow(label: 'Source', value: sourceSize),
+              InfoValueRow(
+                label: 'Source',
+                value: controller.sourceSize,
+              ),
 
               SliderNumberRow(
                 label: 'Zoom',
-                value: project.zoom,
+                value: controller.project.zoom,
                 min: 25,
                 max: 300,
                 defaultValue: 100,
                 divisions: 275,
                 decimals: 0,
-                units: '',
-                onChanged: (value) {
-                  project.zoom = value;
-                },
+                units: '%',
+                onChanged: controller.setZoom,
               ),
 
               SliderNumberRow(
                 label: 'Offset X',
-                value: project.imageOffsetX,
+                value: controller.project.imageOffsetX,
                 min: -100,
                 max: 100,
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '',
-                onChanged: (value) {
-                  project.imageOffsetX = value;
-                },
+                units: '%',
+                onChanged: controller.setImageOffsetX,
               ),
 
               SliderNumberRow(
                 label: 'Offset Y',
-                value: project.imageOffsetY,
+                value: controller.project.imageOffsetY,
                 min: -100,
                 max: 100,
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '',
-                onChanged: (value) {
-                  project.imageOffsetY = value;
-                },
+                units: '%',
+                onChanged: controller.setImageOffsetY,
               ),
 
               SliderNumberRow(
                 label: 'Bright',
-                value: project.brightness,
+                value: controller.project.brightness,
                 min: 0,
                 max: 200,
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '',
-                onChanged: (value) {
-                  project.brightness = value;
-                },
+                units: '%',
+                onChanged: controller.setBrightness,
               ),
 
               SliderNumberRow(
                 label: 'Contrast',
-                value: project.contrast,
+                value: controller.project.contrast,
                 min: 0,
                 max: 200,
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '',
-                onChanged: (value) {
-                  project.contrast = value;
-                },
+                units: '%',
+                onChanged: controller.setContrast,
               ),
 
               SliderNumberRow(
                 label: 'Sat',
-                value: project.saturation,
+                value: controller.project.saturation,
                 min: 0,
                 max: 200,
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '',
-                onChanged: (value) {
-                  project.saturation = value;
-                },
+                units: '%',
+                onChanged: controller.setSaturation,
               ),
 
               SliderNumberRow(
                 label: 'Gamma',
-                value: project.gamma,
+                value: controller.project.gamma,
                 min: 0.25,
                 max: 3.00,
                 defaultValue: 1.00,
                 divisions: 275,
                 decimals: 2,
                 units: '',
-                onChanged: (value) {
-                  project.gamma = value;
-                },
+                onChanged: controller.setGamma,
               ),
             ],
           ),

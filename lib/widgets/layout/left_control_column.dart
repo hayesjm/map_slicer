@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../model/slicer_project.dart';
-import '../../services/image_loader.dart';
+import '../../controllers/slicer_controller.dart';
 import '../panels/export_pdf_panel.dart';
 import '../panels/grid_controls_panel.dart';
 import '../panels/image_controls_panel.dart';
 import '../panels/output_controls_panel.dart';
 
 class LeftControlColumn extends StatelessWidget {
-  final SlicerProject project;
-  final LoadedImageFile? loadedImage;
-  final ValueChanged<LoadedImageFile?> onImageLoaded;
+  final SlicerController controller;
 
   const LeftControlColumn({
     super.key,
-    required this.project,
-    required this.loadedImage,
-    required this.onImageLoaded,
+    required this.controller,
   });
 
   @override
@@ -24,19 +19,11 @@ class LeftControlColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ImageControlsPanel(
-            project: project,
-            loadedImage: loadedImage,
-            onImageLoaded: onImageLoaded,
-          ),
+          ImageControlsPanel(controller: controller),
           const SizedBox(height: 12),
-          GridControlsPanel(
-            project: project,
-          ),
+          GridControlsPanel(controller: controller),
           const SizedBox(height: 12),
-          OutputControlsPanel(
-            project: project,
-          ),
+          OutputControlsPanel(controller: controller),
           const SizedBox(height: 12),
           const ExportPdfPanel(),
         ],

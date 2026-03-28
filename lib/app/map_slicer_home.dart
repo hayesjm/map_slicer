@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../controllers/slicer_controller.dart';
 import '../model/slicer_project.dart';
-import '../services/image_loader.dart';
 import '../widgets/layout/app_header.dart';
 import '../widgets/layout/workspace_shell.dart';
 
@@ -12,14 +12,20 @@ class MapSlicerHome extends StatefulWidget {
 }
 
 class _MapSlicerHomeState extends State<MapSlicerHome> {
-  final SlicerProject _project = SlicerProject();
+  late final SlicerController _controller;
 
-  LoadedImageFile? _loadedImage;
+  @override
+  void initState() {
+    super.initState();
+    _controller = SlicerController(
+      project: SlicerProject(),
+    );
+  }
 
-  void _handleImageLoaded(LoadedImageFile? image) {
-    setState(() {
-      _loadedImage = image;
-    });
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,9 +36,7 @@ class _MapSlicerHomeState extends State<MapSlicerHome> {
           const AppHeader(),
           Expanded(
             child: WorkspaceShell(
-              project: _project,
-              loadedImage: _loadedImage,
-              onImageLoaded: _handleImageLoaded,
+              controller: _controller,
             ),
           ),
         ],

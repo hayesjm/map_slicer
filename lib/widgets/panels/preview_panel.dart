@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import '../../model/slicer_project.dart';
-import '../../services/image_loader.dart';
+import '../../controllers/slicer_controller.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_metrics.dart';
 import 'titled_panel.dart';
 
 class PreviewPanel extends StatelessWidget {
-  final SlicerProject project;
-  final LoadedImageFile? loadedImage;
+  final SlicerController controller;
 
   const PreviewPanel({
     super.key,
-    required this.project,
-    required this.loadedImage,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: project,
+      listenable: controller,
       builder: (context, _) {
         return TitledPanel(
           title: 'Preview',
@@ -44,7 +41,7 @@ class PreviewPanel extends StatelessWidget {
                 final stageSize = _fitStageSize(
                   availableWidth: availableWidth,
                   availableHeight: availableHeight,
-                  targetAspectRatio: project.printedAspectRatio,
+                  targetAspectRatio: controller.project.printedAspectRatio,
                 );
 
                 return Center(
@@ -59,7 +56,7 @@ class PreviewPanel extends StatelessWidget {
                       ),
                     ),
                     clipBehavior: Clip.antiAlias,
-                    child: loadedImage == null
+                    child: controller.loadedImage == null
                         ? const Center(
                             child: Text(
                               'No image loaded',
@@ -70,8 +67,10 @@ class PreviewPanel extends StatelessWidget {
                             ),
                           )
                         : Image.memory(
-                            loadedImage!.bytes,
-                            fit: project.stretchImage ? BoxFit.fill : BoxFit.cover,
+                            controller.loadedImage!.bytes,
+                            fit: controller.project.stretchImage
+                                ? BoxFit.contain
+                                : BoxFit.cover,
                           ),
                   ),
                 );
