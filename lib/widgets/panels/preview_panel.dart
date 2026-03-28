@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../controllers/slicer_controller.dart';
+import '../../logic/slicer_geometry.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_metrics.dart';
 import 'titled_panel.dart';
@@ -25,9 +26,7 @@ class PreviewPanel extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFF111111),
               borderRadius: BorderRadius.circular(AppMetrics.panelRadius),
-              border: Border.all(
-                color: AppColors.panelBorder,
-              ),
+              border: Border.all(color: AppColors.panelBorder),
             ),
             child: LayoutBuilder(
               builder: (context, constraints) {
@@ -38,41 +37,60 @@ class PreviewPanel extends StatelessWidget {
                   return const SizedBox.shrink();
                 }
 
-                final stageSize = _fitStageSize(
-                  availableWidth: availableWidth,
-                  availableHeight: availableHeight,
-                  targetAspectRatio: controller.project.printedAspectRatio,
-                );
-
-                return Center(
-                  child: Container(
-                    width: stageSize.width,
-                    height: stageSize.height,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.18),
+                final loadedImage = controller.loadedImage;
+                if (loadedImage == null) {
+                  return const Center(
+                    child: Text(
+                      'No image loaded',
+                      style: TextStyle(
+                        color: Colors.white54,
+                        fontSize: 16,
                       ),
                     ),
-                    clipBehavior: Clip.antiAlias,
-                    child: controller.loadedImage == null
-                        ? const Center(
-                            child: Text(
-                              'No image loaded',
-                              style: TextStyle(
-                                color: Colors.white54,
-                                fontSize: 16,
+                  );
+                }
+
+                final composition = computeSlicerComposition(
+                  project: controller.project,
+                  viewportWidth: availableWidth,
+                  viewportHeight: availableHeight,
+                  sourceImageWidth: loadedImage.pixelWidth.toDouble(),
+                  sourceImageHeight: loadedImage.pixelHeight.toDouble(),
+                );
+
+                return Stack(
+                  children: [
+                    Positioned.fromRect(
+                      rect: composition.stageRect,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.18),
+                          ),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: composition.imageRect.left - composition.stageRect.left,
+                              top: composition.imageRect.top - composition.stageRect.top,
+                              width: composition.imageRect.width,
+                              height: composition.imageRect.height,
+                              child: Image.memory(
+                                loadedImage.bytes,
+                                fit: controller.project.stretchImage
+                                    ? BoxFit.fill
+                                    : BoxFit.cover,
+                                filterQuality: FilterQuality.high,
                               ),
                             ),
-                          )
-                        : Image.memory(
-                            controller.loadedImage!.bytes,
-                            fit: controller.project.stretchImage
-                                ? BoxFit.fill
-                                : BoxFit.cover,
-                          ),
-                  ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
@@ -80,27 +98,5 @@ class PreviewPanel extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-Size _fitStageSize({
-  required double availableWidth,
-  required double availableHeight,
-  required double targetAspectRatio,
-}) {
-  if (targetAspectRatio <= 0) {
-    return Size(availableWidth, availableHeight);
-  }
-
-  final availableAspectRatio = availableWidth / availableHeight;
-
-  if (availableAspectRatio > targetAspectRatio) {
-    final height = availableHeight;
-    final width = height * targetAspectRatio;
-    return Size(width, height);
-  } else {
-    final width = availableWidth;
-    final height = width / targetAspectRatio;
-    return Size(width, height);
   }
 }
