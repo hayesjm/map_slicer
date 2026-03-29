@@ -129,7 +129,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: controller.project.gridMode == 'iso' ? 300 : 1,
                 decimals: 1,
-                units: '°',
+                units: '',
                 onChanged: controller.project.gridMode == 'iso'
                     ? controller.setIsoAngle
                     : null,
@@ -143,32 +143,8 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 360,
                 decimals: 0,
-                units: '°',
+                units: '',
                 onChanged: controller.setGridRotation,
-              ),
-
-              SliderNumberRow(
-                label: 'Size',
-                value: controller.project.gridSizeIn,
-                min: 0.25,
-                max: 3.00,
-                defaultValue: 1.00,
-                divisions: 275,
-                decimals: 2,
-                units: '"',
-                onChanged: controller.setGridSizeIn,
-              ),
-
-              SliderNumberRow(
-                label: 'Stroke',
-                value: controller.project.gridStroke,
-                min: 0.1,
-                max: 5.0,
-                defaultValue: 1.0,
-                divisions: 49,
-                decimals: 1,
-                units: 'p',
-                onChanged: controller.setGridStroke,
               ),
 
               SliderNumberRow(
@@ -179,7 +155,7 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setGridOffsetX,
               ),
 
@@ -191,9 +167,35 @@ class GridControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setGridOffsetY,
               ),
+
+              SliderNumberRow(
+                label: 'Size',
+                value: controller.project.gridSizeIn,
+                min: 0.25,
+                max: 3.00,
+                defaultValue: 1.00,
+                divisions: 275,
+                decimals: 2,
+                units: '',
+                onChanged: controller.setGridSizeIn,
+              ),
+
+              SliderNumberRow(
+                label: 'Stroke',
+                value: controller.project.gridStroke,
+                min: 0.1,
+                max: 5.0,
+                defaultValue: 1.0,
+                divisions: 49,
+                decimals: 1,
+                units: '',
+                onChanged: controller.setGridStroke,
+              ),
+
+
             ],
           ),
         );

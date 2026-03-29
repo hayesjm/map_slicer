@@ -33,7 +33,7 @@ class OutputControlsPanel extends StatelessWidget {
                 defaultValue: 30,
                 divisions: 56,
                 decimals: 1,
-                units: '"',
+                units: '',
                 onChanged: controller.setPrintedWidth,
               ),
 
@@ -45,7 +45,7 @@ class OutputControlsPanel extends StatelessWidget {
                 defaultValue: 20,
                 divisions: 56,
                 decimals: 1,
-                units: '"',
+                units: '',
                 onChanged: controller.setPrintedHeight,
               ),
 

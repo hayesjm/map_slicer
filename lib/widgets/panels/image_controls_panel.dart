@@ -43,7 +43,7 @@ class ImageControlsPanel extends StatelessWidget {
                 defaultValue: 100,
                 divisions: 275,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setZoom,
               ),
 
@@ -55,7 +55,7 @@ class ImageControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setImageOffsetX,
               ),
 
@@ -67,7 +67,7 @@ class ImageControlsPanel extends StatelessWidget {
                 defaultValue: 0,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setImageOffsetY,
               ),
 
@@ -79,7 +79,7 @@ class ImageControlsPanel extends StatelessWidget {
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setBrightness,
               ),
 
@@ -91,7 +91,7 @@ class ImageControlsPanel extends StatelessWidget {
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setContrast,
               ),
 
@@ -103,7 +103,7 @@ class ImageControlsPanel extends StatelessWidget {
                 defaultValue: 100,
                 divisions: 200,
                 decimals: 0,
-                units: '%',
+                units: '',
                 onChanged: controller.setSaturation,
               ),
 

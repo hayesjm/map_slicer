@@ -4,14 +4,12 @@ import '../../logic/slicer_geometry.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_metrics.dart';
 import 'titled_panel.dart';
+import '../preview/grid_overlay.dart';
 
 class PreviewPanel extends StatelessWidget {
   final SlicerController controller;
 
-  const PreviewPanel({
-    super.key,
-    required this.controller,
-  });
+  const PreviewPanel({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +40,7 @@ class PreviewPanel extends StatelessWidget {
                   return const Center(
                     child: Text(
                       'No image loaded',
-                      style: TextStyle(
-                        color: Colors.white54,
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(color: Colors.white54, fontSize: 16),
                     ),
                   );
                 }
@@ -71,11 +66,16 @@ class PreviewPanel extends StatelessWidget {
                           ),
                         ),
                         clipBehavior: Clip.antiAlias,
+
                         child: Stack(
                           children: [
                             Positioned(
-                              left: composition.imageRect.left - composition.stageRect.left,
-                              top: composition.imageRect.top - composition.stageRect.top,
+                              left:
+                                  composition.imageRect.left -
+                                  composition.stageRect.left,
+                              top:
+                                  composition.imageRect.top -
+                                  composition.stageRect.top,
                               width: composition.imageRect.width,
                               height: composition.imageRect.height,
                               child: Image.memory(
@@ -84,6 +84,14 @@ class PreviewPanel extends StatelessWidget {
                                     ? BoxFit.fill
                                     : BoxFit.cover,
                                 filterQuality: FilterQuality.high,
+                              ),
+                            ),
+
+                            Positioned.fill(
+                              child: GridOverlay(
+                                project: controller.project,
+                                stageWidth: composition.stageRect.width,
+                                stageHeight: composition.stageRect.height,
                               ),
                             ),
                           ],
